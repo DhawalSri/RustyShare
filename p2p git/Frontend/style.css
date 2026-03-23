@@ -1,0 +1,184 @@
+/* --- Modern CSS Reset & Variables --- */
+:root {
+    --bg-dark: #0f172a; /* Deep slate / midnight */
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-blue: #38bdf8;
+    --accent-hover: #0284c7;
+    --border-color: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+/* --- Header --- */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+header h1 span {
+    color: var(--accent-blue);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* --- Grid Layout --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Cards --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: #475569;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* --- Inputs --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], 
+input[type="file"]::file-selector-button {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+input[type="file"] {
+    color: var(--text-muted);
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+input[type="file"]::file-selector-button:hover {
+    border-color: var(--accent-blue);
+}
+
+/* --- Buttons --- */
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.primary-btn {
+    background-color: var(--accent-blue);
+    color: #000;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+}
+
+.secondary-btn:hover {
+    background-color: var(--accent-blue);
+    color: #000;
+}
+
+/* --- Code Display --- */
+.code-output-wrapper {
+    margin-top: 1rem;
+    text-align: center;
+    background: var(--bg-dark);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.code-display {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    letter-spacing: 4px;
+    font-family: monospace;
+}

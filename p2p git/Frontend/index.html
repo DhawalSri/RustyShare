@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RustShare | Secure Transfer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rusty<span>Share</span></h1>
+            <p>Developer : Dhawal Srivastava</p>
+        </header>
+
+        <div class="card-grid">
+            <div class="card">
+                <h2>Send File</h2>
+                <div class="input-group">
+                    <input type="file" id="fileInput" class="file-input">
+                </div>
+                <button type="button" onclick="uploadFile()" class="primary-btn">Generate Code</button>
+                
+                <div class="code-output-wrapper">
+                    <span class="label">Your Secure Code:</span>
+                    <div id="codeDisplay" class="code-display">------</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Receive File</h2>
+                <div class="input-group">
+                    <input type="text" id="codeInput" placeholder="Enter 6-digit code" maxlength="6" autocomplete="off">
+                </div>
+                <button type="button" onclick="downloadFile()" class="secondary-btn">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
