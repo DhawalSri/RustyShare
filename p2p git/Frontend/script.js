@@ -1,8 +1,10 @@
-// Smart URL resolution to handle both local files and network IP addresses
+
 const IS_LOCAL_FILE = window.location.protocol === "file:";
 const BASE_URL = IS_LOCAL_FILE ? "http://localhost:3000" : "";
-const WS_URL = IS_LOCAL_FILE ? "ws://localhost:3000/ws" : `ws://${window.location.host}/ws`;
 
+// Dynamically check if we need a secure WebSocket
+const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const WS_URL = IS_LOCAL_FILE ? "ws://localhost:3000/ws" : `${wsProtocol}//${window.location.host}/ws`;
 let myDeviceId = null;
 let pendingDownloadCode = null;
 let ws;
@@ -11,7 +13,7 @@ let ws;
 function connectWebSocket() {
     ws = new WebSocket(WS_URL);
 
-    ws.onopen = () => console.log("🟢 Connected to Rust WebSocket");
+    ws.onopen = () => console.log("Connected to Rust WebSocket");
 
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
@@ -34,7 +36,7 @@ function connectWebSocket() {
     };
 
     ws.onclose = () => {
-        console.log("🔴 Disconnected. Reconnecting in 3s...");
+        console.log("Disconnected. Reconnecting in 3s...");
         document.getElementById("myDeviceBadge").innerText = "Disconnected.";
         setTimeout(connectWebSocket, 3000);
     };
