@@ -49,7 +49,7 @@ async fn main() {
     println!("Server running on http://{}", addr);
     
     axum::serve(listener, app).await.unwrap();
-}
+
 }
 
 //NEW WEBSOCKET LOGIC FOR "AIRDROP"
