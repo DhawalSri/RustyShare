@@ -42,11 +42,14 @@ async fn main() {
         .layer(DefaultBodyLimit::disable())//disabling the axum body limit
         .with_state(state);
 
-    let addr = std::net::SocketAddr::from(([0, 0, 0, 0], 3000));
-    let listener:TcpListener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    let port = std::env::var("PORT").unwrap_or_else(|_| "3000".to_string());
+    let addr = format!("0.0.0.0:{}", port);
     
+    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
     println!("Server running on http://{}", addr);
+    
     axum::serve(listener, app).await.unwrap();
+}
 }
 
 //NEW WEBSOCKET LOGIC FOR "AIRDROP"
