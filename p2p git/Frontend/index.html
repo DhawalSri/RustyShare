@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RustShare | Secure Transfer</title>
+    <title>RustShare | P2P Transfer</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Rusty<span>Share</span></h1>
-            <p>Developer : Dhawal Srivastava</p>
-            <h4>Keep your devices on the same wifi, broski!!</h4>
+            <h1>Rust<span>Share</span></h1>
+            <p>Developer: Dhawal Srivastava.</p>
+            <div id="myDeviceBadge" class="badge">Connecting to network...</div>
         </header>
 
         <div class="card-grid">
@@ -21,20 +21,38 @@
                 <div class="input-group">
                     <input type="file" id="fileInput" class="file-input">
                 </div>
-                <button type="button" onclick="uploadFile()" class="primary-btn">Generate Code</button>
+                <button type="button" onclick="uploadFile()" class="primary-btn">Generate 6-Digit Code</button>
                 
                 <div class="code-output-wrapper">
+                    <span class="label">Or Send Directly To:</span>
+                    <div id="nearbyDevices" class="nearby-grid">
+                        <p class="text-muted">Scanning for devices...</p>
+                    </div>
+                </div>
+
+                <div class="code-output-wrapper">
                     <span class="label">Your Secure Code:</span>
-                    <div id="codeDisplay" class="code-display">------</div>
+                    <div id="codeDisplay" class="code-display">---</div>
                 </div>
             </div>
 
             <div class="card">
-                <h2>Receive File</h2>
+                <h2>Receive File (Fallback)</h2>
                 <div class="input-group">
                     <input type="text" id="codeInput" placeholder="Enter 6-digit code" maxlength="6" autocomplete="off">
                 </div>
-                <button type="button" onclick="downloadFile()" class="secondary-btn">Download</button>
+                <button type="button" onclick="downloadFile()" class="secondary-btn">Download via Code</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="transferModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Incoming File! 🚀</h3>
+            <p id="modalText">Device-XXXX wants to send you a file.</p>
+            <div class="modal-actions">
+                <button type="button" onclick="acceptTransfer()" class="primary-btn">Accept</button>
+                <button type="button" onclick="rejectTransfer()" class="secondary-btn danger-btn">Reject</button>
             </div>
         </div>
     </div>
